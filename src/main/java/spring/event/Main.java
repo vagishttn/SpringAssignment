@@ -11,6 +11,7 @@ public class Main {
         DataBase db = ctx.getBean("eventData", spring.event.DataBase.class);
         db.connect();
         ctx.stop();
+        ctx.close();
     }
 
 }
