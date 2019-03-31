@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean
+            class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+
+    <!--DataBaseConfig Bean-->
+    <bean id="database" class="spring.core.DatabaseConfig">
+        <property name="port" value="8080"/>
+        <property name="name" value="mysql"/>
+    </bean>
+    <bean id="database1" class="spring.core.DatabaseConfig">
+        <property name="port" value="8081"/>
+        <property name="name" value="mysql"/>
+    </bean>
+    <bean id="database2" class="spring.core.DatabaseConfig">
+        <constructor-arg value="mysql" index="1"/>
+        <constructor-arg value="8082"/>
+    </bean>
+    <bean id="database3" class="spring.core.DatabaseConfig">
+        <constructor-arg name="port" value="8083"/>
+        <constructor-arg name="name" value="mysql"/>
+    </bean>
+    <bean id="database4" class="spring.core.DatabaseConfig">
+        <constructor-arg value="8084" type="int"/>
+        <constructor-arg value="mysql" type="java.lang.String"/>
+    </bean>
+
+
+    <!--Question 3 And 4-->
+    <bean id="teaRestaurant" class="spring.core.question3.Restaurant">
+        <property name="hotDrink" ref="tea"/>
+    </bean>
+
+
+    <bean id="tea" class="spring.core.question3.Tea" primary="true"/>
+
+    <bean id="expressTeaRestaurant" class="spring.core.question3.Restaurant">
+        <property name="hotDrink">
+            <bean class="spring.core.question3.ExpressTea"/>
+        </property>
+    </bean>
+
+
+    <!--Question 5-->
+    <bean id="complexBean" class="spring.core.Complex">
+        <property name="list">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>3</value>
+                <value>4</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="1" value="vagish"/>
+                <entry key="2" value="gagan"/>
+                <entry key="3" value="arpit"/>
+                <entry key="4" value="prateek"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--Question 6-->
+
+    <bean id="res" class="spring.core.question3.Restaurant" autowire="byName"/>
+    <bean id="res1" class="spring.core.question3.Restaurant" autowire="byType"/>
+    <bean id="res3" class="spring.core.question3.Restaurant" autowire="constructor">
+        <property name="hotDrink" ref="tea"/>
+    </bean>
+    <bean id="hotDrink" class="spring.core.question3.Tea"/>
+
+    <!--Question 7-->
+
+    <bean id="teaRestaurant1" class="spring.core.question3.Restaurant" scope="prototype">
+        <property name="hotDrink" ref="tea1"/>
+    </bean>
+
+    <bean id="restaurant" class="spring.core.question3.Restaurant">
+        <property name="hotDrink" ref="tea"/>
+    </bean>
+    <bean id="tea1" class="spring.core.question3.Tea"/>
+    <bean id="tea2" class="spring.core.question3.Tea"/>
+
+    <context:component-scan base-package="spring.core.question10"/>
+
+
+</beans>
