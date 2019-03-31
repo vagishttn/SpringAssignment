@@ -12,6 +12,8 @@
 
     <aop:aspectj-autoproxy/>
     <context:annotation-config/>
+    <context:component-scan base-package="spring"/>
+
 
     <bean
             class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
@@ -105,7 +107,6 @@
     <bean id="tea1" class="spring.core.question3.Tea"/>
     <bean id="tea2" class="spring.core.question3.Tea"/>
 
-    <context:component-scan base-package="spring.core.question10"/>
 
     <bean id="eventData" class="spring.event.DataBase">
         <property name="port" value="8080"/>
@@ -128,6 +129,11 @@
     </bean>
 
     <bean id="infoService" class="spring.aop.InfoService"/>
+
+
+
+
+
 
 
 </beans>
